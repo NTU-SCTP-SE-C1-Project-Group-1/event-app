@@ -15,6 +15,7 @@ import { EventRegister } from 'react-native-event-listeners';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import AboutScreen from './src/screens/AboutScreen';
+import AdminScreen from './src/screens/AdminScreen';
 import AppSupportScreen from './src/screens/AppSupportScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import UpcomingEventScreen from './src/screens/UpcomingEventScreen';
@@ -176,6 +177,16 @@ function App() {
                 component={SettingsScreen}
                 options={{
                   title: 'Settings',
+                  drawerIcon: ({ color, size }) => (
+                    <Ionicons name="md-apps-sharp" color={color} size={size} />
+                  ),
+                }}
+              />
+               <Drawer.Screen
+                name="Admin Login"
+                component={AdminScreen}
+                options={{
+                  title: 'Admin',
                   drawerIcon: ({ color, size }) => (
                     <Ionicons name="md-apps-sharp" color={color} size={size} />
                   ),
