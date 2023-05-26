@@ -27,6 +27,9 @@ function ProfileScreen() {
     }
   }, [completeEvent]);
 
+  const [ viewAll, setViewAll ] = useState(false);
+  console.log(viewAll);
+
   return (
     <View style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.headerContainer}>
@@ -52,7 +55,7 @@ function ProfileScreen() {
           </View>
         </View>
       </View>
-      <View style={styles.recentlyCompletedContainer}>
+      <View style={viewAll ? styles.recentlyCompletedContainer2 : styles.recentlyCompletedContainer}>
         <View style={styles.recentlyCompletedTextContainer}>
           <Text style={styles.recentlyCompletedHeader}>
             Recently completed:
@@ -68,14 +71,9 @@ function ProfileScreen() {
               {`\u2022`} No recent events
             </Text>
           )}
-          {/* <Text style={styles.recentlyCompletedSubheader}>
-            {`\u2022`} Elderly Home Cleaning
-          </Text>
-          <Text style={styles.recentlyCompletedSubheader}>
-            {`\u2022`} Meal Delivery
-          </Text> */}
-          <Pressable>
-            <Text style={styles.viewAll}>View all {`\u00BB`}</Text>
+          <Pressable
+          onPress={() => setViewAll(current => !current)}>
+            <Text style={viewAll ? styles.viewAll : styles.viewLess}>{viewAll ? 'View all' : 'View less'}</Text>
           </Pressable>
         </View>
       </View>
@@ -87,26 +85,6 @@ function ProfileScreen() {
         <Text style={styles.profileText}>Edit your profile</Text>
         <Text style={styles.profileArrow}>{`\u00BB`}</Text>
       </View>
-      {/* <View style={styles.volunteerContainer}>
-        <View>
-          <View style={styles.textContainer}>
-            <Text style={styles.subheader}>ID: </Text>
-            <Text style={styles.volunteerInfo}>{volunteer?.id}</Text>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.subheader}>Name: </Text>
-            <Text style={styles.volunteerInfo}>{volunteer?.name}</Text>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.subheader}>Email: </Text>
-            <Text style={styles.volunteerInfo}>{volunteer?.email}</Text>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.subheader}>Contact: </Text>
-            <Text style={styles.volunteerInfo}>{volunteer?.phone}</Text>
-          </View>
-        </View>
-      </View> */}
     </View>
   );
 }
@@ -186,7 +164,20 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     shadowColor: 'gray',
-    // shadowOpacity: 0.5,
+    height: 200,
+    marginBottom: 25,
+    width: 305,
+    backgroundColor: 'FFF',
+    marginTop: 10,
+    paddingBottom: 10,
+  },
+  recentlyCompletedContainer2: {
+    marginHorizontal: 8,
+    borderWidth: 1,
+    borderColor: '#1F75FE',
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: 'gray',
     height: 'auto', //400
     marginBottom: 25,
     width: 305,
@@ -218,6 +209,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#00308F',
+    textAlign: 'right',
+  },
+  viewLess: {
+    marginBottom: 5,
+    marginRight: 20,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'transparent',
     textAlign: 'right',
   },
   profileContainer: {
